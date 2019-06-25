@@ -4,6 +4,7 @@ import (
     "os"
     str "strings"
     dg "github.com/bwmarrin/discordgo"
+    "ThanosCord/commands"
 )
 
 var prefix string = os.Getenv("prefix")
@@ -15,7 +16,12 @@ func MessageCreate(s *dg.Session, m *dg.MessageCreate) {
     }
 
     // Useful when responding to commands.
-    command := strings.Split(strings.TrimPrefix(m.Content, prefix), " ")[0]
-    args := strings.Split(strings.TrimSpace(strings.TrimPrefix(m.Content, prefix + command)), " ")
+    command := str.Split(str.TrimPrefix(m.Content, prefix), " ")[0]
+    args := str.Split(str.TrimSpace(str.TrimPrefix(m.Content, prefix + command)), " ")
+
+    if command == "ping" {
+        commands.Ping(s, m, args)
+        return
+    }
 
 }
