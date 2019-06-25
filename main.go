@@ -6,6 +6,7 @@ import (
     "os/signal"
     "syscall"
     dg "github.com/bwmarrin/discordgo"
+    "ThanosCord/events"
 )
 
 func main() {
@@ -16,6 +17,8 @@ func main() {
         log.Fatal("Error creating Discord session...", err)
         return
     }
+
+    bot.AddHandler(events.MessageCreate)
 
     // Open Websocket connection.
     err = bot.Open()
