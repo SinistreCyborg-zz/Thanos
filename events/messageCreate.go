@@ -24,4 +24,8 @@ func MessageCreate(s *dg.Session, m *dg.MessageCreate) {
         return
     }
 
+    if command == "snap" {
+        commands.Snap(s, m, args)
+    }
+
 }
